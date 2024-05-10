@@ -1,0 +1,482 @@
+/* start background animation */
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+
+body{
+    background: #4e54c8;  
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    font-family: 'Exo', sans-serif;
+}
+
+.area{
+    width: 100%;
+    overflow: hidden;
+    
+}
+
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(171, 171, 171, 0.2);
+    box-shadow: 0 0 10px 5px white;
+    animation: animate 25s linear infinite;
+    top: -150px;
+    
+}
+
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 15%;
+    }
+    100%{
+        transform: translateY(2500px) rotate(720deg);
+        opacity: 1;
+        border-radius: 50%;
+    }
+
+}
+/* end background animation */
+.section-home {
+    width: 100%;
+    overflow-x: hidden;
+}
+.nav-link:hover{
+
+    text-decoration-line: underline;
+
+    background-color:rgba(212, 229, 255, 0.178);
+
+    transition: 0.4s ease-in-out;
+
+}
+
+.active {
+
+    text-decoration-line: underline;
+
+    background-color:rgba(212, 229, 255, 0.178);
+
+}
+
+.card-hover {
+
+    transition: background-color 0.3s ease-in-out;
+
+}
+
+.card-hover:hover:not(.card-clicked) {
+
+    background-color: rgb(211, 211, 211);
+
+}
+
+.card-clicked {
+
+    background-color: rgb(163, 163, 163);
+
+}
+
+.material-symbols-outlined {
+
+    font-variation-settings:
+
+    'FILL' 0,
+
+    'wght' 400,
+
+    'GRAD' 0,
+
+    'opsz' 24
+
+}
+
+.banner {
+    position: relative;
+    width: 65rem;
+
+}
+
+.slider-container {
+
+    width: 100%;
+
+    overflow: hidden;
+
+}
+
+
+
+.slider {
+
+    display: flex;
+
+    transition: transform 0.5s ease-in-out;
+
+}
+
+
+
+.slide {
+
+    min-width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+.buttonslide {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    top: 40%;
+}
+
+/* Tombol navigasi */
+
+.prev, .next {
+
+    cursor: pointer;
+
+    width: auto;
+
+    padding: 16px;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 18px;
+
+    transition: 0.6s ease;
+
+    border-radius: 0 3px 3px 0;
+
+    user-select: none;
+
+}
+
+
+
+/* Gaya hover pada tombol navigasi */
+
+.prev:hover, .next:hover {
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+}
+
+
+
+/* tampilan pada produk */
+
+.section-title {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    width: 65rem;
+
+}
+
+.section-strip {
+
+    width: 50px;
+
+    height: 8px;
+
+    background-color: rgb(255, 255, 255);
+
+}
+
+.product {
+
+    margin: auto;
+
+    width: 65rem;
+
+}
+
+.topup {
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+}
+
+.banner-item {
+
+    position: relative;
+
+    width: 25rem;
+
+    height: 100%;
+
+}
+
+.section-howto {
+
+    width: 100%;
+
+}
+
+.section-item {
+
+    width: 40rem;
+
+}
+
+.items {
+
+    padding: 2rem;
+
+}
+
+.slideButton {
+
+    position: absolute;
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    top: 30%;
+
+}
+
+/* Tombol navigasi */
+
+.prev-item, .next-item {
+
+    cursor: pointer;
+
+    width: auto;
+
+    padding: 16px;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 18px;
+
+    transition: 0.6s ease;
+
+    border-radius: 0 3px 3px 0;
+
+    user-select: none;
+
+}
+
+
+
+
+
+/* Gaya hover pada tombol navigasi */
+
+.prev-item:hover, .next-item:hover {
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+}
+
+.img-item {
+
+    width: 40px;
+
+}
+.username-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+.loading {
+    display: inline-block;
+    transform: translate(-50%, -50%);
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #4e54c8;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    z-index: 9999;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 1024px){
+
+    .banner {
+
+        width: 100%;
+
+    }
+
+
+    .product {
+
+        margin: auto;
+
+        width: 100%;
+
+    }
+
+    .banner-item {
+
+        width: 16rem;
+
+    }
+
+    .section-item {
+
+        width: 31rem;
+
+    }
+
+}
+
+@media screen and (max-width: 540px){
+
+    .banner {
+
+        width: 100%;
+
+    }
+
+    .product {
+
+        margin: auto;
+
+        width:100%;
+
+    }
+
+    .topup {
+
+        flex-direction: column;
+
+    }
+
+    .section-item {
+
+        width: 100%;
+
+    }
+
+    .banner-item {
+
+        width: 100%;
+
+    }
+
+}
