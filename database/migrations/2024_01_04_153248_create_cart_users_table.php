@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('cart_users', function (Blueprint $table) {
             $table->id();
             $table->string('order_id');
-            $table->integer('product_id');
+            $table->string('no_hp');
+            $table->string('product_id');
             $table->string('category');
             $table->string('name');
             $table->integer('price');
@@ -23,7 +24,10 @@ return new class extends Migration
             $table->integer('server_id');
             $table->string('status');
             $table->boolean('order_processed')->default(false);
+            $table->string('payment_method')->default('none');
             $table->timestamps();
+            $table->string('trxid')->default('none');
+            $table->string('token')->default('none');
         });
     }
 

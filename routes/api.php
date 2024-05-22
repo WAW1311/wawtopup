@@ -22,3 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/notification/callback',[handlercontroller::class,'webhooks']);
 Route::get('/cek-username/{game_id}',[handlercontroller::class,'checkusername']);
 Route::get('/get-data',[Controller::class,'get_data']);
+
+Route::get('/link', function () {
+    $target = storage_path('app/public');
+    $link = $_SERVER['DOCUMENT_ROOT'].'/storage';
+    symlink($target,$link);
+    return "berhasil symlink";
+});

@@ -11,10 +11,10 @@
             <div class="slider-container">
                 <div class="slider">
                     <div class="slide">
-                        <img class=" img-fluid rounded" src="{{ asset('storage/static/assets/banner1.webp') }}" alt="Slide 1">
+                        <img class=" img-fluid rounded" style="border-radius: 20px;" src="{{ asset('storage/static/assets/banner1.webp') }}" alt="Slide 1">
                     </div>
                     <div class="slide">
-                        <img class="img-fluid rounded"  src="{{ asset('storage/static/assets/banner2.webp') }}" alt="Slide 2">
+                        <img class="img-fluid rounded" style="border-radius: 20px;" src="{{ asset('storage/static/assets/banner2.webp') }}" alt="Slide 2">
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        <div class="section-howto mt-3 fw-bold text-light">
+        <div class="section-howto mt-3 fw-bold text-light-emphasis">
           @yield('howto')
         </div>
       </div>
@@ -40,7 +40,9 @@
               </div>
             </div>
             <div class="mb-0">
-              @yield('datagame')
+              <div class="datagame">
+                @yield('datagame')
+              </div>
             </div>
           </div>
         </div>
@@ -86,6 +88,21 @@
           </Div>
 
         </div> --}}
+        <div class="bg-light rounded mt-3" style="width: 100%; padding:2rem;">
+          <div class="title-item">
+            <div class="d-flex">
+              <div class="bg-primary rounded" style="width:30px;height:30px;">
+                <p class="text-center text-light fw-bold" style="font-size:19px">3</p>
+              </div>
+              <div class="mb-3 mx-2">
+                <label class="form-label text-light-emphasis fw-bold">Masukan Nomor Whatsapp Aktif</label>
+              </div>
+            </div>
+            <div class="mb-0">
+              <input type="text" id="nohp" name="nohp" class="form-control" placeholder="Contoh: 08123xxx...">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <center><button type="submit" class="btn btn-primary mt-3 mb-5" style="width:100%;">Beli Sekarang</button></center>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\product;
 use App\Models\cart_user;
+use App\Models\sub_product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Midtrans;
@@ -10,14 +11,14 @@ use Aditdev\ApiGames;
 
 class handlercontroller extends Controller
 {
+    public function index() {
+        $sub_product = sub_product::with('product')->get();
+        return view('index',compact('sub_product'));
+    }
     public function profit($price) {
         $profit = $price * 0.07;
         $Price_profit = $price + $profit;
         return $Price_profit;
-    }
-    public function index() {
-        $products = product::all();
-        return view('index',compact('products'));
     }
     public function checkusername(Request $request, $game_id) {
         $api = new ApiGames;
@@ -63,12 +64,14 @@ class handlercontroller extends Controller
         $check = cart_user::where('order_id',$order_id)->first();
         if(!$check) {
             $products = $this->get_order();
+            $nohp = $request->input('nohp');
             $product_id = $request->input('selectedProduct');
             $user_id = (int) $request->input('userid');
             $server = (int) $request->input('server');
             foreach($products as $product) {
                 if ($product['code'] == $product_id) {
                     cart_user::create([
+                        'no_hp'=>$nohp,
                         'order_id'=> $order_id,
                         'product_id'=> $product_id,
                         'category'=> $product['game'],
@@ -97,43 +100,47 @@ class handlercontroller extends Controller
         Midtrans\Config::$isProduction = false;
         Midtrans\Config::$serverKey = $Server_key;
         $notif = new Midtrans\Notification();
-
         $transaction = $notif->transaction_status;
         $type = $notif->payment_type;
         $order_id = $notif->order_id;
         $fraud = $notif->fraud_status;
-
         if ($transaction == 'capture') {
             if ($type == 'credit_card'){
                 if($fraud == 'accept'){
-                    $data = ['status'=>'success'];
+                    $data = ['status'=>'success','payment_method' => $type];
                     $this->changestatus($order_id,$data);
+                    $this->sendmsg($order_id,$type);
                 }
                 }
         }
         else if ($transaction == 'settlement'){
             if($fraud == 'accept'){
-                $data = ['status'=>'success'];
+                $data = ['status'=>'success','payment_method' => $type];
                 $this->changestatus($order_id,$data);
+                $this->sendmsg($order_id,$type);
             }
         }
         else if($transaction == 'pending'){
-            $data = ['status'=>'pending'];
+            $data = ['status'=>'pending','payment_method' => $type];
             $this->changestatus($order_id,$data);
+            $this->sendmsg($order_id,$type);
         }
         else if ($transaction == 'deny') {
-            $data = ['status'=>'denied'];
+            $data = ['status'=>'denied','payment_method' => $type];
             $this->changestatus($order_id,$data);
+            $this->sendmsg($order_id,$type);
         }
         else if ($transaction == 'expire') {
-            $data = ['status'=>'expired'];
+            $data = ['status'=>'expired','payment_method' => $type];
             $this->changestatus($order_id,$data);
+            $this->sendmsg($order_id,$type);
         }
         else if ($transaction == 'cancel') {
-            $data = ['status'=>'cancelled'];
+            $data = ['status'=>'cancelled','payment_method' => $type];
             $this->changestatus($order_id,$data);
+            $this->sendmsg($order_id,$type);
         }
-        $data = ['status'=>'success'];
+        $data = ['status'=>'success','payment_method' => $type];
         return response()->json($data,200);
     }
     // public function invoice($order_id){

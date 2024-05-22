@@ -3,8 +3,7 @@
 
 
 body{
-    background: #4e54c8;  
-    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    background: rgb(212, 229, 255);
     font-family: 'Exo', sans-serif;
 }
 
@@ -29,7 +28,7 @@ body{
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(171, 171, 171, 0.2);
+    background: rgba(33, 123, 242, 0.2);
     box-shadow: 0 0 10px 5px white;
     animation: animate 25s linear infinite;
     top: -150px;
@@ -129,15 +128,50 @@ body{
 
 }
 /* end background animation */
+.card-content {
+    display: flex;
+    align-items: center; /* Memastikan elemen vertikal berada di tengah */
+}
+
+.card-image {
+    flex: 0 0 auto; /* Elemen gambar tidak fleksibel */
+    margin-right: 15px; /* Jarak antara gambar dan teks */
+}
+
 .section-home {
     width: 100%;
     overflow-x: hidden;
 }
-.nav-link:hover{
+.search-container {
+    width: 20rem;
+    position: relative;
+}
 
-    text-decoration-line: underline;
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 1;
+}
 
-    background-color:rgba(212, 229, 255, 0.178);
+.search-results li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.search-results li:hover {
+    background-color: #f4f4f4;
+}
+
+.nav-item:hover{
+    background-color:rgba(120, 156, 209, 0.178);
 
     transition: 0.4s ease-in-out;
 
@@ -190,11 +224,13 @@ body{
 }
 
 .slider-container {
-
     width: 100%;
 
     overflow: hidden;
 
+}
+.datagame > input {
+    border: 2px solid rgb(128, 128, 128)
 }
 
 
@@ -260,6 +296,11 @@ body{
 
 }
 
+.img-product {
+    width: 100px;
+    height: 100px;
+    margin:auto; z-index:1000
+}
 
 
 /* tampilan pada produk */
@@ -282,7 +323,6 @@ body{
 
     height: 8px;
 
-    background-color: rgb(255, 255, 255);
 
 }
 
@@ -371,7 +411,26 @@ body{
     user-select: none;
 
 }
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;
+}
 
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
 
 
 
@@ -396,8 +455,8 @@ body{
 .loading {
     display: inline-block;
     transform: translate(-50%, -50%);
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #4e54c8;
+    border: 8px solid #1b7aff;
+    border-top: 8px solid #ffffff;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -413,6 +472,92 @@ body{
 .hidden {
     display: none;
 }
+
+.status-container {
+    display: flex;
+    align-items: center;
+}
+
+.status-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.line {
+    flex: 1;
+    height: 5px;
+    background-color: #000;
+}
+.default {
+    background-color: grey;
+    color: white;
+}
+.success {
+    background-color: #157347;
+    color: white;
+}
+
+/* style dashboard */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+.sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    transition: all 0.3s;
+}
+
+.sidebar .list-unstyled {
+    padding: 20px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color:rgba(120, 156, 209, 0.178);
+
+    transition: 0.4s ease-in-out;
+}
+
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+.sidebar.active {
+    text-decoration: none;
+}
+.nav-toggle {
+    display: none;
+}
+.shadow-top {
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.shadow-right {
+    box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.1);
+}
+.shadow-bottom {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.shadow-left {
+    box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* end style dashboard */
 
 @media screen and (max-width: 1024px){
 
@@ -441,6 +586,15 @@ body{
 
         width: 31rem;
 
+    }
+    .sidebar {
+        margin-left: -250px;
+    }
+    .sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
     }
 
 }
@@ -478,5 +632,11 @@ body{
         width: 100%;
 
     }
-
+    .img-product {
+        width: 80px;
+        height: 80px;
+    }
+    .nav-toggle {
+        display: inline;
+    }
 }

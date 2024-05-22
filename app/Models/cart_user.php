@@ -11,6 +11,7 @@ class cart_user extends Model
 
     protected $fillable = [
         'order_id',
+        'no_hp',
         'product_id',
         'category',
         'name',
@@ -20,7 +21,10 @@ class cart_user extends Model
         'server_id',
         'status',
         'order_processed',
+        'payment_method',
         'trxid',
         'token',
+        'created_at',
+        'updated_at',
     ];
 }

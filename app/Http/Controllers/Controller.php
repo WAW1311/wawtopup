@@ -12,6 +12,15 @@ use App\Models\cart_user;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+    protected function sendmsg($order_id,$paymentMethod) {
+        $cart = cart_user::where('order_id',$order_id)->first();
+        $pesan = "-----Detail pembelian-----\n\nOrder_id : $order_id\nProduk : $cart->category $cart->name\nUser_id : $cart->user_id\nServer_id : $cart->server_id\nHarga : $cart->price\nMetode Pembayaran : $paymentMethod\nStatus : $cart->status";
+        $env = env('API_WHATSAPP');
+        $url = "$env?message=$pesan&number=$cart->no_hp";
+        $sendmessage = Http::post($url);
+        $result = $sendmessage->json();
+        return $result;
+    }
     protected function changestatus($order_id,$data){
         $cart = cart_user::where('order_id',$order_id)->first();
         $cart->update($data);
@@ -30,47 +39,12 @@ class Controller extends BaseController
         return $product;
     }
     // public function get_data() {
-    //     // $url = env('API_SERVICE');
-    //     // $param = [
-    //     //     'key'=>'c5SB7PtjCCyAzrwGtII8dYt2uJWlR6zQBkBHkIna5Z7oY1hSlZnFnonM14PkBg6t',
-    //     //     'sign'=>'1550a96bbdeec1f54c0dc4fe065342f6',
-    //     //     'type'=>'services',
-    //     //     'filter_status'=>'available',
-    //     // ];
-    //     // $get_product = Http::asForm()->post($url,$param);
-    //     // $urls = env('API_SERVICE');
-    //     // $params = [
-    //     //     'key'=>'c5SB7PtjCCyAzrwGtII8dYt2uJWlR6zQBkBHkIna5Z7oY1hSlZnFnonM14PkBg6t',
-    //     //     'sign'=>'1550a96bbdeec1f54c0dc4fe065342f6',
-    //     //     'type'=>'status',
-    //     //     'trxid'=>'VP-663AAC789599A',
-    //     // ];
-    //     // $pesanan = Http::asForm()->post($urls,$params);
-    //     // $Data = $pesanan->json();
-    //     // $datas = $Data['data'][0];
-    //     // $status = $datas['status'];
-    //     // $asu = [
-    //     //     'status'=>'success',
-    //     //     'stat'=>$status
-    //     // ];
-    //     $url = env('API_SERVICE');
-    //     $param = [
-    //         'key'=>'c5SB7PtjCCyAzrwGtII8dYt2uJWlR6zQBkBHkIna5Z7oY1hSlZnFnonM14PkBg6t',
-    //         'sign'=>'1550a96bbdeec1f54c0dc4fe065342f6',
-    //         'type'=>'order',
-    //         'service'=>'ML5_0-S10',
-    //         'data_no'=>123,
-    //         'data_zone'=>123,
-    //     ];
-    //     $get_order = Http::asForm()->post($url,$param);
-    //     $Datas = $get_order->json();
-    //     return response()->json($Datas);
     // }
     protected function generateuuid() {
         $uuid = Str::uuid()->toString();
         $short = substr($uuid,0,8);
-
-        return $short;
+        $order_id = "WAW$short";
+        return $order_id;
     }
     protected function create_snap($order_id){
         $cart = cart_user::where('order_id',$order_id)->first();
@@ -91,8 +65,8 @@ class Controller extends BaseController
             'customer_details' => array(
                 'first_name' => 'customer',
                 'last_name' => 'website',
-                'email' => 'unknown@gmail.com',
-                'phone' => 'unknown',
+                'email' => 'wawtopupstore@example.com',
+                'phone' => $cart->no_hp,
             ),
         );
         $snapToken = \Midtrans\Snap::getSnapToken($params);

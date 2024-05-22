@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\topupcontroller;
 use App\Http\Controllers\handlercontroller;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\dashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,29 +18,28 @@ use Illuminate\Support\Facades\Artisan;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/auth/login',[LoginController::class,'index'])->name('login')->middleware('guest');
+Route::post('/auth/login',[LoginController::class,'authenticate'])->name('login')->middleware('guest');
 
-Route::get('/',[handlercontroller::class,'index']);
+Route::get('/auth/register',[RegisterController::class,'index'])->name('register')->middleware('guest');
+Route::post('/auth/register',[registerController::class,'authenticate'])->name('register')->middleware('guest');
+
+Route::get('/admin/dashboard',[dashboardcontroller::class,'index'])->name('dashboard')->middleware('auth');
+
+Route::get('/admin/dashboard/product',[dashboardcontroller::class,'product'])->name('product')->middleware('auth');
+Route::get('/admin/dashboard/cart-user',[dashboardcontroller::class,'cart_user'])->name('cart_user')->middleware('auth');
+
+Route::post('/admin/dashboard/add',[dashboardcontroller::class,'addproduct'])->name('add')->middleware('auth');
+Route::post('/admin/dashboard/update',[dashboardcontroller::class,'updateproduct'])->name('update')->middleware('auth');
+Route::post('/admin/dashboard/delete/{product_id}',[dashboardcontroller::class,'deleteproduct'])->name('delete')->middleware('auth');
+
+Route::get('/logout',[LoginController::class,'logout'])->name('logout')->middleware('auth');
+
+
+Route::get('/',[handlercontroller::class,'index']); 
 Route::get('/cek-transaksi',[handlercontroller::class,'cek']);
 Route::post('/cek-transaksi',[handlercontroller::class,'trx']);
 Route::post('/order/{order_id}',[handlercontroller::class,'order']);
 Route::get('/order/checkout/invoice/{order_id}',[handlercontroller::class,'invoice']);
 
-Route::get('/mobile-legends',[topupcontroller::class,'ml']);
-Route::get('/mobile-legends-promo',[topupcontroller::class,'mlb']);
-Route::get('/freefire',[topupcontroller::class,'freefire']);
-Route::get('/pubg-mobile',[topupcontroller::class,'pubgm']);
-Route::get('/genshin-impact',[topupcontroller::class,'genshin']);
-Route::get('/clash-of-clans',[topupcontroller::class,'coc']);
-Route::get('/valorant',[topupcontroller::class,'valorant']);
-Route::get('/call-of-duty',[topupcontroller::class,'cod']);
-Route::get('/honkai-impact-3',[topupcontroller::class,'hoi']);
-Route::get('/arena-of-valor',[topupcontroller::class,'aov']);
-Route::get('/tower-of-fantasy',[topupcontroller::class,'tof']);
-Route::get('/8-ball-pool',[topupcontroller::class,'ballpool']);
-
-Route::get('/linkstorage', function () {
-    symlink('/../storage','/../public');
-});
-Route::get('/link', function () {
-    Artisan::call('storage:link');
-});
+Route::get('/{href}',[topupcontroller::class,'index'])->name('sub_product');

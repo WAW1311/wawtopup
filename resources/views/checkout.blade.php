@@ -1,29 +1,44 @@
 @extends('layouts.app')
 @section('content')
-<div class="card mx-auto mt-5" style="width: 18rem;">
-    <div class="card-header text-center text-white fw-bold bg-primary">
-        Detail Pesanan
+<div class="container">
+    <div class="status-container mt-3">
+        <div class="status-circle success">
+            <center><span>pilih metode pembayaran</span></center>
+        </div>
+        <div class="line success"></div>
+        <div class="status-circle default">
+            <center><span>verifikasi pembayaran</span></center>
+        </div>
+        <div class="line"></div>
+        <div class="status-circle default">
+            <center><span>proccessing</span></center>
+        </div>
+        <div class="line"></div>
+        <div class="status-circle default">
+            <center><span>success</span></center>
+        </div>
     </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item fw-bold">Order ID : {{$carts->order_id}}</li>
-            <li class="list-group-item fw-bold">Kategori : {{$carts->category}}</li>
-            <li class="list-group-item fw-bold">Produk : {{$carts->name}}</li>
-            <li class="list-group-item fw-bold">Harga : Rp{{number_format($carts->price) }}</li>
-            <li class="list-group-item fw-bold">Jumlah : {{$carts->quantity}}</li>
-            @if ($carts->status == 'pending')
-                <li class="list-group-item fw-bold">Status Pembayaran : <button type="button" class="btn btn-danger" style="cursor:none">{{ $carts->status }}</button></li>
-            @else
-                <li class="list-group-item fw-bold">Status Pembayaran : <button type="button" class="btn btn-success" style="cursor:none">{{ $carts->status }}</button></li>
-            @endif
-            <div class="card-header text-center fw-bold bg-primary text-white">
-                Informasi Akun
-            </div>
-            <li class="list-group-item fw-bold">User ID : {{ $carts->user_id }}</li>
-            <li class="list-group-item fw-bold">Server ID : {{ $carts->server_id }}</li>
-        </ul>
+    <div class="card mx-auto mt-3" style="width: 100%;">
+        <div class="card-header text-center text-white fw-bold bg-primary">
+            Detail Pesanan
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Order ID  :<span class="text-end">{{$carts->order_id}}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Kategori  :<span class="text-end">{{$carts->category}}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Produk    :<span class="text-end">{{$carts->name}}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">User ID          :<span class="text-end">{{ $carts->user_id }}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Server ID        :<span class="text-end">{{ $carts->server_id }}</span></li>
+                <div class="card-header text-center fw-bold bg-primary text-white">
+                    Detail pembayaran
+                </div>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Harga     :<span class="text-end">Rp{{number_format($carts->price) }}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Jumlah    :<span class="text-end">{{$carts->quantity}}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Subtotal    :<span class="text-end">Rp{{number_format($carts->price) }}</span></li>
+            </ul>
+    </div>
+    <br>
+    <button type="button" id="pay-button" class="btn btn-primary mb-3 fw-bold" style="width:100%;">Checkout</button>
 </div>
-<br>
-<center><button type="button" id="pay-button" class="btn btn-primary" style="width:18rem;">Beli Sekarang</button></center>
 <script type="text/javascript">
     var payButton = document.getElementById('pay-button');
     payButton.addEventListener('click', function () {
