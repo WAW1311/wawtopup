@@ -28,8 +28,8 @@ class Controller extends BaseController
     protected function get_order() {
         $url = env('API_SERVICE');
         $param = [
-            'key'=>'c5SB7PtjCCyAzrwGtII8dYt2uJWlR6zQBkBHkIna5Z7oY1hSlZnFnonM14PkBg6t',
-            'sign'=>'1550a96bbdeec1f54c0dc4fe065342f6',
+            'key'=>'96cq2JelX5A8pnVrIpT728F3x6GHDH1Cd8xBns7JkVgCbUEJpniuS5VP0cY5jWXr',
+            'sign'=>'68a076a21ea30488589ef551f49016b8',
             'type'=>'services',
             'filter_status'=>'available',
         ];
@@ -39,6 +39,17 @@ class Controller extends BaseController
         return $product;
     }
     // public function get_data() {
+    //     $result = $this->get_order();
+    //     foreach($result as $data){
+    //         daftar_product::create([
+    //             'name' => $data['game']
+    //         ]);
+    //     }
+    //     return "sukses mengambil nama game ke database";
+    // }
+    // public function get_data() {
+    //     $result = $this->get_order();
+    //     return response()->json($result);
     // }
     protected function generateuuid() {
         $uuid = Str::uuid()->toString();
@@ -51,7 +62,7 @@ class Controller extends BaseController
         $server_key = env('SERVER_KEY');
         \Midtrans\Config::$serverKey = $server_key;
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
         // Set sanitization on (default)
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true

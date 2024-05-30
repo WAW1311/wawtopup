@@ -20,7 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/notification/callback',[handlercontroller::class,'webhooks']);
-Route::get('/cek-username/{game_id}',[handlercontroller::class,'checkusername']);
+Route::get('v1/cek-username/{game_id}',[handlercontroller::class,'checkusername']);
+
+Route::get('v2/cek-username/{game_id}',[handlercontroller::class,'checkign']);
+
 Route::get('/get-data',[Controller::class,'get_data']);
 
 Route::get('/link', function () {

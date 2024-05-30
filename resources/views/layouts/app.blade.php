@@ -8,7 +8,7 @@
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
             <script type="text/javascript"
-            src="{{env('URL_SANDBOX')}}"
+            src="{{env('URL_MIDTRANS')}}"
             data-client-key="{{env('CLIENT_KEY')}}"></script>
             <title>Topup Games Termurah dan Aman | WAWTOPUP</title>
             <link rel="icon" href="{{ asset('storage/static/assets/logo.webp') }}" type="image/x-icon">
@@ -28,8 +28,7 @@
                     <li></li>
             </ul>
             <div class="content">
-                <br>
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
                     <div class="container-fluid">
                         <a class="navbar-brand text-light-emphasis fs-4 fw-bold" href="#">WAWTOPUP</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,14 +58,13 @@
                                         <a class="d-flex nav-link fs-5 text-light-emphasis rounded fw-bold" aria-current="page" href="{{ route('dashboard')}}"><span class="material-symbols-outlined">Dashboard</span>Dashboard</a>
                                     </li>
                                 @endauth
-                                <!-- <li class="nav-item rounded">
-                                    <a class="d-flex nav-link fs-5 text-light-emphasis rounded fw-bold" aria-current="page" href="/register"><span class="material-symbols-outlined">app_registration</span>Register</a>
-                                </li> -->
                             </ul>
                         </div>
                     </div>
                 </nav>
-                @yield('content')
+                <div style="margin-top: 5rem;">
+                    @yield('content')
+                </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

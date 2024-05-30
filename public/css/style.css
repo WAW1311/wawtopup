@@ -3,7 +3,8 @@
 
 
 body{
-    background: rgb(212, 229, 255);
+    /* background: rgb(212, 229, 255); */
+    background: rgb(224, 235, 249);
     font-family: 'Exo', sans-serif;
 }
 
@@ -504,6 +505,59 @@ body{
 }
 
 /* style dashboard */
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+.profile-header {
+    display: flex;
+    align-items: center;
+}
+.profile-header img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.profile-header div {
+    flex: 1;
+}
+.profile-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+.profile-header p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+.profile-details {
+    margin-top: 20px;
+}
+.profile-details div {
+    margin-bottom: 10px;
+}
+.profile-details div span {
+    display: inline-block;
+    width: 100px;
+    color: #666;
+}
+.profile-details div span.value {
+    color: #000;
+}
+.profile-details div span.link {
+    color: #007BFF;
+    cursor: pointer;
+}
+.last-login {
+    color: #666;
+    font-size: 14px;
+    text-align: right;
+}
 .wrapper {
     display: flex;
     width: 100%;

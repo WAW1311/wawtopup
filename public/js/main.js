@@ -30,8 +30,8 @@ function validateform() {
     if (user_id == "" || user_id == "" && zone_id == "") {
         alert('Masukan data game yang valid!');
         return false;
-    } else if (user_id.length >= 11 || zone_id.length >= 11){
-        alert('user_ id maupun server_id tidak lebih dari 11 karakter!');
+    } else if (user_id.length >= 254 || zone_id.length >= 254){
+        alert('user_ id maupun server_id tidak lebih dari 255 karakter!');
         return false;
     }else if (!selectproduct.classList.contains("card-clicked") ) {
         alert('Silahkan pilih nominal topup!');
@@ -63,7 +63,7 @@ function CheckUsername(game_id) {
         return false;
     }
     loading();
-    xhttp.open("GET","api/cek-username/"+game_id+"?user_id="+user_id+"&zone_id="+zone_id);
+    xhttp.open("GET","api/v2/cek-username/"+game_id+"?user_id="+user_id+"&zone_id="+zone_id);
     xhttp.send();
     xhttp.onload = function() {
         loading();
@@ -75,9 +75,9 @@ function CheckUsername(game_id) {
         }else if(checkedId.classList.contains('text-danger')) {
             checkedId.classList.remove('text-danger');
         }
-        if (data.status >= 200 && data.status < 300) {
+        if (data.result == true) {
             checkedId.classList.add('text-primary');
-            checkedId.textContent = data.nickname;
+            checkedId.textContent = data.data;
         } else {
             checkedId.classList.add('text-danger');
             checkedId.textContent = "tidak ditemukan!";

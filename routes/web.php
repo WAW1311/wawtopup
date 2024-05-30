@@ -28,6 +28,7 @@ Route::get('/admin/dashboard',[dashboardcontroller::class,'index'])->name('dashb
 
 Route::get('/admin/dashboard/product',[dashboardcontroller::class,'product'])->name('product')->middleware('auth');
 Route::get('/admin/dashboard/cart-user',[dashboardcontroller::class,'cart_user'])->name('cart_user')->middleware('auth');
+Route::get('/admin/dashboard/history',[dashboardcontroller::class,'history'])->name('history')->middleware('auth');
 
 Route::post('/admin/dashboard/add',[dashboardcontroller::class,'addproduct'])->name('add')->middleware('auth');
 Route::post('/admin/dashboard/update',[dashboardcontroller::class,'updateproduct'])->name('update')->middleware('auth');
@@ -40,6 +41,8 @@ Route::get('/',[handlercontroller::class,'index']);
 Route::get('/cek-transaksi',[handlercontroller::class,'cek']);
 Route::post('/cek-transaksi',[handlercontroller::class,'trx']);
 Route::post('/order/{order_id}',[handlercontroller::class,'order']);
-Route::get('/order/checkout/invoice/{order_id}',[handlercontroller::class,'invoice']);
+Route::get('/order/checkout/invoice/{order_id}',[handlercontroller::class,'invoice'])->name('invoice');
 
 Route::get('/{href}',[topupcontroller::class,'index'])->name('sub_product');
+
+route::get('/payment/finish',[handlercontroller::class,'finish']);

@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<br><br>
 <div class="container">
   <form action="/order/{{$order_id}}" method="POST" onsubmit="return validateform(this)">
     @csrf
@@ -29,6 +28,15 @@
         </div>
       </div>
       <div class="section-item">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="bg-light rounded mb-5" style="width: 100%; padding:2rem;">
           <div class="title-item">
             <div class="d-flex">
@@ -36,7 +44,7 @@
                 <p class="text-center text-light fw-bold" style="font-size:19px">1</p>
               </div>
               <div class="mb-3 mx-2">
-                <label class="form-label text-light-emphasis fw-bold">Lengkapi Data Game</label>
+                <label class="form-label text-light-emphasis fw-bold">Lengkapi Data</label>
               </div>
             </div>
             <div class="mb-0">
@@ -99,7 +107,7 @@
               </div>
             </div>
             <div class="mb-0">
-              <input type="text" id="nohp" name="nohp" class="form-control" placeholder="Contoh: 08123xxx...">
+              <input type="text" id="nohp" name="nohp" class="form-control" placeholder="Contoh: 08123xxx..." required>
             </div>
           </div>
         </div>
