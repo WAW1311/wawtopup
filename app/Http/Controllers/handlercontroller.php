@@ -88,21 +88,22 @@ class handlercontroller extends Controller
             $products = $this->get_order();
             $product_id = $request->selectedProduct;
             $server = $request->input('server');
-            $selectedProduct = collect($products)->firstWhere('code', $product_id);
-            if ($selectedProduct) {
-                cart_user::create([
-                    'no_hp'=>$request->nohp,
-                    'order_id'=> $order_id,
-                    'product_id'=> $product_id,
-                    'category'=> $selectedProduct['game'],
-                    'name' => $selectedProduct['name'],
-                    'price'=> $this->profit($selectedProduct['price']['basic']),
-                    'quantity'=> 1,
-                    'user_id'=> $request->userid,
-                    'server_id'=> $server,
-                    'status'=> "pending",
-                    'order_processed' => false,
-                ]);
+            foreach($products as $product) {
+                if ($product['code'] == $product_id) {
+                    cart_user::create([
+                        'no_hp'=>$request->nohp,
+                        'order_id'=> $order_id,
+                        'product_id'=> $product_id,
+                        'category'=> $product['game'],
+                        'name' => $product['name'],
+                        'price'=> $this->profit($product['price']['basic']),
+                        'quantity'=> 1,
+                        'user_id'=> $request->userid,
+                        'server_id'=> $server,
+                        'status'=> "pending",
+                        'order_processed' => false,
+                    ]);
+                }
             }
             $carts = cart_user::where('order_id',$order_id)->first();
         }
