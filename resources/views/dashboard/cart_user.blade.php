@@ -2,7 +2,7 @@
 @section('content')
 <div class="Container">
 <div class="table-responsive p-3 rounded">
-        <table class="table table-striped">
+        <table class="table table-striped shadow">
             <thead>
             <tr>
                 <th scope="col">Order_id</th>
@@ -27,9 +27,7 @@
                         <td>{{$carts->quantity}}</td>
                         <td>{{$carts->user_id}}</td>
                         <td>{{$carts->server_id}}</td>
-                        @if ($carts->status == 'pending')
-                            <td><button type="button" class="btn btn-primary" style="cursor: none;">{{$carts->status}}</button></td>
-                        @elseif ($carts->status == 'success')
+                        @if ($carts->status == 'PAID')
                             <td><button type="button" class="btn btn-success" style="cursor: none;">{{$carts->status}}</button></td>
                         @else
                             <td><button type="button" class="btn btn-danger" style="cursor: none;">{{$carts->status}}</button></td>

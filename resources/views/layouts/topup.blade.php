@@ -37,7 +37,7 @@
                 </ul>
             </div>
         @endif
-        <div class="bg-light rounded mb-5" style="width: 100%; padding:2rem;">
+        <div class="bg-light rounded mb-5 shadow" style="width: 100%; padding:2rem;">
           <div class="title-item">
             <div class="d-flex">
               <div class="bg-primary rounded" style="width:30px;height:30px;">
@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div class="item bg-light rounded">
+        <div class="item bg-light rounded shadow">
           <div class="d-flex" style="width: 100%; padding:2rem;">
             <div class="bg-primary rounded" style="width:30px;height:30px;">
               <p class="text-center text-light fw-bold" style="font-size:19px">2</p>
@@ -67,40 +67,26 @@
                   @yield('items')
           </div>
         </div>
-        {{-- <div class="payment">
-
-          <Div class="card payment1">
-
-            <div class="card-body d-flex align-content-center">
-
-              <img src="{{ asset('storage/static/assets/metode-pembayaran/wallet.png') }}" width="25" height="25">
-
-              <h5 class="text-light-emphasis fw-bold mx-2">E-wallet atau Qris</h5>
-
-            </div>
-
-            <div class=" rounded d-flex text-bg-secondary" style="padding-top: 2rem ; padding: 2rem">
-
-                <img src="{{ asset('storage/static/assets/metode-pembayaran/qris.png') }}" width="50" height="20"/>
-
-                <img src="{{ asset('storage/static/assets/metode-pembayaran/dana.png') }}" width="55" height="20">
-
-                <img src="{{ asset('storage/static/assets/metode-pembayaran/linkaja.png') }}" width="50" height="20">
-
-                <img src="{{ asset('storage/static/assets/metode-pembayaran/ovo.png') }}" width="50" height="20">
-
-                <img src="{{ asset('storage/static/assets/metode-pembayaran/shopeepay.png') }}" width="55" height="20">
-
-            </div>
-
-          </Div>
-
-        </div> --}}
-        <div class="bg-light rounded mt-3" style="width: 100%; padding:2rem;">
+        <div class="bg-light rounded mt-3 shadow" style="width: 100%; padding:2rem;">
           <div class="title-item">
             <div class="d-flex">
               <div class="bg-primary rounded" style="width:30px;height:30px;">
                 <p class="text-center text-light fw-bold" style="font-size:19px">3</p>
+              </div>
+              <div class="mb-3 mx-2">
+                <label class="form-label text-light-emphasis fw-bold">Pilih Metode Pembayaran</label>
+              </div>
+            </div>
+            <div class="mb-0">
+              @yield('payment')
+            </div>
+          </div>
+        </div>
+        <div class="bg-light rounded mt-3 shadow" style="width: 100%; padding:2rem;">
+          <div class="title-item">
+            <div class="d-flex">
+              <div class="bg-primary rounded" style="width:30px;height:30px;">
+                <p class="text-center text-light fw-bold" style="font-size:19px">4</p>
               </div>
               <div class="mb-3 mx-2">
                 <label class="form-label text-light-emphasis fw-bold">Masukan Nomor Whatsapp Aktif</label>

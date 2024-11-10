@@ -2,7 +2,7 @@
 @section('content')
 <div class="Container">
 <div class="table-responsive p-3 rounded">
-        <table class="table table-striped">
+        <table class="table table-striped shadow">
             <thead>
             <tr>
                 <th scope="col">trxid</th>

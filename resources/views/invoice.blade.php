@@ -5,12 +5,12 @@
         <div class="status-circle success">
             <center><span>pilih metode pembayaran</span></center>
         </div>
-        <div class="line {{$carts->status == 'success'? 'success' : 'default'}}"></div>
-        <div class="status-circle {{$carts->status == 'success'? 'success' : 'default'}}">
+        <div class="line {{$carts->status == 'PAID'? 'success' : 'default'}}"></div>
+        <div class="status-circle {{$carts->status == 'PAID'? 'success' : 'default'}}">
             <center><span>verifikasi pembayaran</span></center>
         </div>
-        <div class="line {{$carts->status == 'success'? 'success' : 'default'}}"></div>
-        <div class="status-circle {{$carts->status == 'success'? 'success' : 'default'}}">
+        <div class="line {{$carts->status == 'PAID'? 'success' : 'default'}}"></div>
+        <div class="status-circle {{$carts->status == 'PAID'? 'success' : 'default'}}">
             <center><span>processing</span></center>
         </div>
         <div class="line {{$products['status'] == 'success'? 'success' : 'default'}}"></div>
@@ -18,24 +18,7 @@
             <center><span>success</span></center>
         </div>
     </div>
-    {{-- <div class="status-container">
-        <div class="status-circle success">
-            <center><span>pilih metode pembayaran</span></center>
-        </div>
-        <div class="line {{$carts->status == 'success'? 'success' : 'default'}}"></div>
-        <div class="status-circle {{$carts->status == 'success'? 'success' : 'default'}}">
-            <center><span>verifikasi pembayaran</span></center>
-        </div>
-        <div class="line default"></div>
-        <div class="status-circle default">
-            <center><span>processing</span></center>
-        </div>
-        <div class="line default"></div>
-        <div class="status-circle default">
-            <center><span>success</span></center>
-        </div>
-    </div> --}}
-    <div class="card mx-auto mt-3 mb-5" style="width: 100%;">
+    <div class="card mx-auto mt-3 mb-5 shadow" style="width: 100%;">
         <div class="card-header text-white fw-bold bg-primary">
             INVOICE #{{$carts->order_id}}
         </div>
@@ -50,9 +33,10 @@
                 </div>
                 <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Harga     :<span class="text-end">Rp{{number_format($carts->price) }}</span></li>
                 <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Jumlah    :<span class="text-end">{{$carts->quantity}}</span></li>
-                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Subtotal    :<span class="text-end">Rp{{number_format($carts->price) }}</span></li>
-                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Metode Pembayaran    :<span class="text-end">{{ $carts->payment_method }}</span></li>
-                @if ($carts->status == 'success')
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Metode Pembayaran    :<span class="text-end">{{ $carts->method_name }}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Biaya Admin    :<span class="text-end">Rp{{ number_format($carts->fee_customer) }}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Subtotal    :<span class="text-end">Rp{{number_format($carts->subtotal) }}</span></li>
+                @if ($carts->status == 'PAID')
                 <li class="list-group-item fw-bold  d-flex justify-content-between align-items-center">Status Pembayaran : <span class="text-end"><button type="button" class="btn btn-success" style="cursor:none">{{ $carts->status }}</button></span></li>
                 @else
                 <li class="list-group-item fw-bold  d-flex justify-content-between align-items-center">Status Pembayaran : <span class="text-end"><button type="button" class="btn btn-danger" style="cursor:none">{{ $carts->status }}</button></span></li>

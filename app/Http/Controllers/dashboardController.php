@@ -11,22 +11,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\VipPaymentController;
 
 class dashboardController extends Controller
 {
     public function index() {
-        $url = env('API_PROFILE');
-        $param = [
-            'key'=>'96cq2JelX5A8pnVrIpT728F3x6GHDH1Cd8xBns7JkVgCbUEJpniuS5VP0cY5jWXr',
-            'sign'=>'68a076a21ea30488589ef551f49016b8',
-        ];
-        $get_product = Http::asForm()->post($url,$param);
-        $Data = $get_product->json();
-        $profile = $Data['data'];
-        $cart_user = cart_user::select(
+        $profile = Cache::remember('profile', 180, function () {
+            $vipreseller = new VipPaymentController;
+            $data = $vipreseller->GetProfile();
+            return $data;
+        });
+        $cart_user = Cache::remember('cart_user',120,function(){
+            return cart_user::select(
             DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'),
             DB::raw('count(*) as total')
         )->groupBy('month')->get();
+        });
         return view('dashboard.index',compact('cart_user','profile'));
     }
     public function cart_user() {
@@ -70,15 +71,12 @@ class dashboardController extends Controller
     
             return redirect()->back()->with('success', 'Product added successfully.');
         } catch (\Exception $e) {
-                        // Hapus file yang telah diunggah jika terjadi kesalahan
             if (isset($path) && Storage::exists($path)) {
                 Storage::delete($path);
             }
             if (isset($sub_path) && Storage::exists($sub_path)) {
                 Storage::delete($sub_path);
             }
-
-            // Handle error message
             return redirect()->back()->with('error', "Failed to add product. Please try again later. {$e}");
         }
 
@@ -167,15 +165,8 @@ class dashboardController extends Controller
     }
 
     public function history(){
-        $url = env('API_SERVICE');
-        $param = [
-            'key'=>'96cq2JelX5A8pnVrIpT728F3x6GHDH1Cd8xBns7JkVgCbUEJpniuS5VP0cY5jWXr',
-            'sign'=>'68a076a21ea30488589ef551f49016b8',
-            'type'=>'status',
-        ];
-        $get_product = Http::asForm()->post($url,$param);
-        $Data = $get_product->json();
-        $histories = $Data['data'];
+        $vipreseller = new VipPaymentController;
+        $histories = $vipreseller->GetAllOrderRecents();
         return view('dashboard.history',compact('histories'));
     }
 }

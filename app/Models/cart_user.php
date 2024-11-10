@@ -11,6 +11,7 @@ class cart_user extends Model
 
     protected $fillable = [
         'order_id',
+        'tripay_reference',
         'no_hp',
         'product_id',
         'category',
@@ -19,11 +20,14 @@ class cart_user extends Model
         'quantity',
         'user_id',
         'server_id',
+        'method',
+        'method_name',
+        'fee_customer',
+        'subtotal',
         'status',
         'order_processed',
-        'payment_method',
         'trxid',
-        'token',
+        'url_checkout',
         'created_at',
         'updated_at',
     ];

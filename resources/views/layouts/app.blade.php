@@ -14,21 +14,8 @@
             <link rel="icon" href="{{ asset('storage/static/assets/logo.webp') }}" type="image/x-icon">
         </head>
     <body>
-        <div class="area" >
-            <ul class="circles">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-            </ul>
             <div class="content">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+                <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-bottom">
                     <div class="container-fluid">
                         <a class="navbar-brand text-light-emphasis fs-4 fw-bold" href="#">WAWTOPUP</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +35,7 @@
                                 </div>
                             </ul>
                             <ul class="navbar-nav me-2">
-                                @guest
+                                {{-- @guest
                                     <li class="nav-item rounded">
                                         <a class="d-flex nav-link fs-5 text-light-emphasis rounded fw-bold" aria-current="page" href="{{ route('login')}}"><span class="material-symbols-outlined">login</span>Login</a>
                                     </li>
@@ -57,7 +44,7 @@
                                     <li class="nav-item rounded">
                                         <a class="d-flex nav-link fs-5 text-light-emphasis rounded fw-bold" aria-current="page" href="{{ route('dashboard')}}"><span class="material-symbols-outlined">Dashboard</span>Dashboard</a>
                                     </li>
-                                @endauth
+                                @endauth --}}
                             </ul>
                         </div>
                     </div>
@@ -65,34 +52,45 @@
                 <div style="margin-top: 5rem;">
                     @yield('content')
                 </div>
+                <div class="footer bg-light">
+                    <div class="footerContent p-3">
+                        <div class="about">
+                            <center><img class="img-fluid" src="{{ asset('storage/static/assets/logoperusahaan.png') }}" width="80" alt="logo"></center>
+                            <p class="text-light-emphasis">Wawtopup adalah sebuah penyedia layanan topup games lengkap, dengan harga termurah dan otomatis. Dapatkan lebih banyak promo dan potongan harga dengan cara bergabung menjadi member VIP / VVIP.</p>
+                        </div>
+                        <div class="information">
+                            <h4 class="fw-bold mb-2 text-light-emphasis">Peta Situs</h4>
+                            <a href="/page/faq">FAQ</a>
+                            <a href="/page/contact">Kontak</a>
+                            <a href="/page/about">Tentang Kami</a>
+                            <a href="/page/privacy&policy">Kebijakan Privasi</a>
+                            <a href="/page/termsofservice">Ketentuan Layanan</a>
+                        </div>
+                        <div class="pembayaran">
+                            <h4 class="fw-bold text-light-emphasis">Dokumentasi Api</h4>
+                            <p class="mb-3 text-light-emphasis">Belum tersedia</p>
+                            <h4 class="fw-bold mb-3 text-light-emphasis">Pembayaran</h4>
+                            <marquee>
+                                <img class="img-fluid px-2" src="{{ asset('storage/static/assets/metode-pembayaran/bca.webp') }}" width="80" alt="">
+                                <img class="img-fluid" src="{{ asset('storage/static/assets/metode-pembayaran/bni.webp') }}" width="80" alt="">
+                                <img class="img-fluid px-2" src="{{ asset('storage/static/assets/metode-pembayaran/briva.webp') }}" width="80" alt="">
+                                <img class="img-fluid" src="{{ asset('storage/static/assets/metode-pembayaran/mandiri.webp') }}" width="80" alt="">
+                                <img class="img-fluid px-2" src="{{ asset('storage/static/assets/metode-pembayaran/ovo.png') }}" width="80" alt="">
+                                <img class="img-fluid" src="{{ asset('storage/static/assets/metode-pembayaran/qris.png') }}" width="80" alt="">
+                                <img class="img-fluid px-2" src="{{ asset('storage/static/assets/metode-pembayaran/dana.png') }}" width="80" alt="">
+                                <img class="img-fluid" src="{{ asset('storage/static/assets/metode-pembayaran/shopeepay.png') }}" width="80" alt="">
+                            </marquee>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100">
+                    <br>
+                    <center><p>© 2024 WAW Digital Group in Pemalang - Jawa Tengah, Indonesia.</p></center>
+                </div>
             </div>
-        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="{{ asset('js/main.js')}}"></script>
         <script src="{{ asset('js/livesearch.js')}}"></script>
-        <script>
-            let currentIndex = 0;
-
-            function showSlide(index) {
-            const slider = document.querySelector('.slider');
-            const slides = document.querySelectorAll('.slide');
-            if (index >= slides.length) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = slides.length - 1;
-            } else {
-                currentIndex = index;
-            }
-            slider.style.transform = `translateX(${-currentIndex * 100}%)`;
-            }
-            function prevSlide() {
-            showSlide(currentIndex - 1);
-            }
-            function nextSlide() {
-            showSlide(currentIndex + 1);
-            }
-            setInterval(nextSlide, 5000);
-        </script>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function(){

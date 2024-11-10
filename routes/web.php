@@ -5,8 +5,8 @@ use App\Http\Controllers\topupcontroller;
 use App\Http\Controllers\handlercontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,12 +37,20 @@ Route::post('/admin/dashboard/delete/{product_id}',[dashboardcontroller::class,'
 Route::get('/logout',[LoginController::class,'logout'])->name('logout')->middleware('auth');
 
 
-Route::get('/',[handlercontroller::class,'index']); 
+Route::get('/page/faq',[PagesController::class,'faq']);
+Route::get('/page/contact',[PagesController::class,'contact']);
+Route::get('/page/about',[PagesController::class,'about']);
+Route::get('/page/privacy&policy',[PagesController::class,'privacypolicy']);
+Route::get('/page/termsofservice',[PagesController::class,'termsofservice']);
+
+Route::get('/',[handlercontroller::class,'index'])->name('home');
 Route::get('/cek-transaksi',[handlercontroller::class,'cek']);
 Route::post('/cek-transaksi',[handlercontroller::class,'trx']);
 Route::post('/order/{order_id}',[handlercontroller::class,'order']);
-Route::get('/order/checkout/invoice/{order_id}',[handlercontroller::class,'invoice'])->name('invoice');
+Route::get('/order/invoice',[handlercontroller::class,'invoice'])->name('invoice');
 
-Route::get('/{href}',[topupcontroller::class,'index'])->name('sub_product');
+Route::get('/order/{href}',[topupcontroller::class,'index'])->name('sub_product');
 
-route::get('/payment/finish',[handlercontroller::class,'finish']);
+Route::fallback(function(){
+    return redirect()->back();
+});

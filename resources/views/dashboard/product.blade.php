@@ -104,7 +104,7 @@
         </div>
     </div>
     <div class="table-responsive px-3 rounded">
-        <table class="table table-striped">
+        <table class="table table-striped shadow">
             <thead>
                 <tr>
                     <th scope="col">Product ID</th>

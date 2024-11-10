@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('server_id');
             $table->string('status');
             $table->boolean('order_processed')->default(false);
-            $table->string('payment_method')->default('none');
+            $table->string('method')->default('none');
             $table->timestamps();
             $table->string('trxid')->default('none');
             $table->string('token')->default('none');

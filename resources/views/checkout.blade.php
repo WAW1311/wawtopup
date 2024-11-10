@@ -38,7 +38,7 @@
 
     </div>
 
-    <div class="card mx-auto mt-3" style="width: 100%;">
+    <div class="card mx-auto mt-3 shadow" style="width: 100%;">
 
         <div class="card-header text-center text-white fw-bold bg-primary">
 
@@ -68,10 +68,26 @@
 
                 <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Jumlah    :<span class="text-end">{{$carts->quantity}}</span></li>
 
-                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Subtotal    :<span class="text-end">Rp{{number_format($carts->price) }}</span></li>
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Metode Pembayaran    :<span class="text-end">{{$carts->method_name}}</span></li>
+
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Biaya Admin    :<span class="text-end">Rp{{number_format($carts->fee_customer) }}</span></li>
+
+                <li class="list-group-item fw-bold d-flex justify-content-between align-items-center">Subtotal    :<span class="text-end">Rp{{number_format($carts->subtotal) }}</span></li>
 
             </ul>
 
+    </div>
+
+    <div class="card" style="width:100%">
+        <div class="card mx-auto" width="10rem">
+            <div class="card-body">
+                @if ($carts->qr_url != null)
+                    <img class="card-img-top rounded" src="{{$carts->qr_url}}" alt="qrcode">
+                @endif
+                <p class="card-title">{{$carts->title}}</p>
+                <p class="card-text">{!! $carts->steps !!}</p>
+            </div>
+        </div>
     </div>
 
     <br>
@@ -80,7 +96,7 @@
 
 </div>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 
     var payButton = document.getElementById('pay-button');
 
@@ -118,6 +134,6 @@
 
     });
 
-</script>
+</script> --}}
 
 @endsection

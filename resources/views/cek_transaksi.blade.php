@@ -22,7 +22,6 @@
             <br>
     
             <button type="submit" class=" mx-3 btn btn-primary">Cari Transaksi</button>
-    
         </form>
 </div></center>
 

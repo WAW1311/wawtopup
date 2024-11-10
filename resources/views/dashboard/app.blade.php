@@ -20,19 +20,25 @@
                 </div>
                 <ul class="list-unstyled components">
                     <li>
-                        <a href="{{ route('dashboard') }}" aria-expanded="false" class="text-light-emphasis fw-bold">Home</a>
+                        <a href="{{ route('dashboard') }}" aria-expanded="false" class="d-flex text-light-emphasis fw-bold"><span class="material-symbols-outlined">home</span>Home</a>
                     </li>
                     <li>
-                        <a href="{{ route('product') }}"  aria-expanded="false" class="text-light-emphasis fw-bold">Product</a>
+                        <a href="#" aria-expanded="false" class="d-flex text-light-emphasis fw-bold"><span class="material-symbols-outlined">trending_up</span>Keuntungan</a>
                     </li>
                     <li>
-                        <a href="{{ route('cart_user') }}"  aria-expanded="false" class="text-light-emphasis fw-bold">History pembelian</a>
+                        <a href="{{ route('product') }}"  aria-expanded="false" class="d-flex text-light-emphasis fw-bold"><span class="material-symbols-outlined">category</span>Product</a>
                     </li>
                     <li>
-                        <a href="{{ route('history') }}"  aria-expanded="false" class="text-light-emphasis fw-bold">History pengiriman</a>
+                        <a href="#"  aria-expanded="false" class="d-flex text-light-emphasis fw-bold"><span class="material-symbols-outlined">sell</span>Diskon</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('cart_user') }}"  aria-expanded="false" class="d-flex text-light-emphasis fw-bold"><span class="material-symbols-outlined">shopping_cart</span>History pembelian</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('history') }}"  aria-expanded="false" class="d-flex text-light-emphasis fw-bold"><span class="material-symbols-outlined">shopping_cart_checkout</span>History pengiriman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="d-flex nav-link text-light-emphasis rounded fw-bold" aria-current="page" href="/"><span class="material-symbols-outlined">logout</span>Beranda</a>
+                        <a class="d-flex nav-link text-light-emphasis rounded fw-bold" aria-current="page" href="/"><span class="material-symbols-outlined">swap_horiz</span>Beranda</a>
                     </li>
                     <li>
                         <a class="d-flex text-light-emphasis rounded fw-bold" aria-current="page" href="{{ route('logout')}}"><span class="material-symbols-outlined">logout</span>logout</a>
