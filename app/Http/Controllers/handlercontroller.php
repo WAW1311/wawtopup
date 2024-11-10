@@ -84,9 +84,16 @@ class handlercontroller extends Controller
         }
         if ($carts->status == "PAID"){
             if ($carts->order_processed == false && $carts->trxid == null){
-                $product = $vipreseller->GetOrder($carts);
-                $status = ['order_processed'=>true,'trxid'=>$product->trxid];
-                $carts->update($status);
+                try {
+                    $product = $vipreseller->GetOrder($carts);
+                    $status = ['order_processed'=>true,'trxid'=>$product->trxid];
+                    $carts->update($status);
+                } catch (\Exception $e)  {
+                    $products = [
+                        'status'=>'pending',
+                    ];
+                    return view('invoice',compact('carts','products'));
+                }
             }
             $products = $vipreseller->GetOrderDetails($carts);
             if($products != false) {
